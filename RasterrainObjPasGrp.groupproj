@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{41A5220A-DB06-447D-8B8B-25E841AEECB2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="fmx\RasterrainObjPasFmx.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="vcl\RasterrainObjPasVcl.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="RasterrainObjPasFmx">
+        <MSBuild Projects="fmx\RasterrainObjPasFmx.dproj"/>
+    </Target>
+    <Target Name="RasterrainObjPasFmx:Clean">
+        <MSBuild Projects="fmx\RasterrainObjPasFmx.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RasterrainObjPasFmx:Make">
+        <MSBuild Projects="fmx\RasterrainObjPasFmx.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RasterrainObjPasVcl">
+        <MSBuild Projects="vcl\RasterrainObjPasVcl.dproj"/>
+    </Target>
+    <Target Name="RasterrainObjPasVcl:Clean">
+        <MSBuild Projects="vcl\RasterrainObjPasVcl.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RasterrainObjPasVcl:Make">
+        <MSBuild Projects="vcl\RasterrainObjPasVcl.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="RasterrainObjPasFmx;RasterrainObjPasVcl"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="RasterrainObjPasFmx:Clean;RasterrainObjPasVcl:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="RasterrainObjPasFmx:Make;RasterrainObjPasVcl:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
