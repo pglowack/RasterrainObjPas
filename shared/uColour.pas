@@ -7,15 +7,7 @@ type
     red, green, blue, special: Double;
     class function Create: Colour; overload; static;
     class function Create(r,g,b,s: Double): Colour; overload; static;
-	  function getColorRed: Double;
-	  function getColorGreen: Double;
-	  function getColorBlue: Double;
-	  function getColorSpecial: Double;
-    procedure setColorRed(redValue: Double);
-    procedure setColorGreen(greenValue: Double);
-    procedure setColorBlue(blueValue: Double);
-    procedure setColorSpecial(specialValue: Double);
-    function 	brightness: Double;
+    function brightness: Double;
     function colorScalar(scalar: Double): Colour;
     function colorAdd(color: Colour): Colour;
     function colorMultiply(color: Colour): Colour;
@@ -65,17 +57,17 @@ end;
 
 function Colour.colorAdd(color: Colour): Colour;
 begin
-  Result := Colour.Create(red + color.getColorRed(), green + color.getColorGreen(), blue + color.getColorBlue(), special);
+  Result := Colour.Create(red + color.red, green + color.green, blue + color.blue, special);
 end;
 
 function Colour.colorAverage(color: Colour): Colour;
 begin
-  Result := Colour.Create((red + color.getColorRed())/2, (green + color.getColorGreen())/2, (blue + color.getColorBlue())/2, special);
+  Result := Colour.Create((red + color.red)/2, (green + color.green)/2, (blue + color.blue)/2, special);
 end;
 
 function Colour.colorMultiply(color: Colour): Colour;
 begin
-  Result := Colour.Create(red*color.getColorRed(), green*color.getColorGreen(), blue*color.getColorBlue(), special);
+  Result := Colour.Create(red*color.red, green*color.green, blue*color.blue, special);
 end;
 
 function Colour.colorScalar(scalar: Double): Colour;
@@ -89,46 +81,6 @@ begin
   Result.green := g;
   Result.blue := b;
   Result.special := s;
-end;
-
-function Colour.getColorBlue: Double;
-begin
-  Result := blue;
-end;
-
-function Colour.getColorGreen: Double;
-begin
-  Result := green;
-end;
-
-function Colour.getColorRed: Double;
-begin
-  Result := red;
-end;
-
-function Colour.getColorSpecial: Double;
-begin
-  Result := special;
-end;
-
-procedure Colour.setColorBlue(blueValue: Double);
-begin
-  blue := blueValue;
-end;
-
-procedure Colour.setColorGreen(greenValue: Double);
-begin
-  green := greenValue;
-end;
-
-procedure Colour.setColorRed(redValue: Double);
-begin
-  red := redValue;
-end;
-
-procedure Colour.setColorSpecial(specialValue: Double);
-begin
-  special := specialValue;
 end;
 
 end.

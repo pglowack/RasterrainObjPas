@@ -78,7 +78,7 @@ begin
 	winning_object_color := scene_objects.Items[index_of_winning_object].getColor();
 	winning_object_normal := scene_objects.Items[index_of_winning_object].getNormalAt(intersection_position);
 
-  if SameValue(winning_object_color.getColorSpecial(), 2, accuracy) then
+  if SameValue(winning_object_color.special, 2, accuracy) then
   begin
 		// checkered/tile floor pattern
 
@@ -87,23 +87,23 @@ begin
     if square mod 2 = 0 then
     begin
 			// black tile
-      winning_object_color.setColorRed(0);
-      winning_object_color.setColorGreen(0);
-      winning_object_color.setColorBlue(0);
+      winning_object_color.red := 0;
+      winning_object_color.green := 0;
+      winning_object_color.blue := 0;
     end
     else
     begin
 	  	// white tile
-      winning_object_color.setColorRed(1);
-      winning_object_color.setColorGreen(1);
-      winning_object_color.setColorBlue(1);
+      winning_object_color.red := 1;
+      winning_object_color.green := 1;
+      winning_object_color.blue := 1;
 
     end;
   end;
 
   final_color := winning_object_color.colorScalar(ambientlight);
 
-  if (winning_object_color.getColorSpecial() > 0) and (winning_object_color.getColorSpecial() <= 1) then
+  if (winning_object_color.special > 0) and (winning_object_color.special <= 1) then
   begin
 		// reflection from objects with specular intensity
 		dot1 := winning_object_normal.dotProduct(intersecting_ray_direction.negative());
@@ -137,7 +137,7 @@ begin
 
           reflection_intersection_color := getColorAt(reflection_intersection_position, reflection_intersection_ray_direction, scene_objects, index_of_winning_object_with_reflection, light_sources, accuracy, ambientlight);
 
-          final_color := final_color.colorAdd(reflection_intersection_color.colorScalar(winning_object_color.getColorSpecial()));
+          final_color := final_color.colorAdd(reflection_intersection_color.colorScalar(winning_object_color.special));
         end;
       end;
 
@@ -184,7 +184,7 @@ begin
       begin
         final_color := final_color.colorAdd(winning_object_color.colorMultiply(light_sources.Items[light_index].getLightColor()).colorScalar(cosine_angle));
 
-        if (winning_object_color.getColorSpecial() > 0) and (winning_object_color.getColorSpecial() <= 1) then
+        if (winning_object_color.special > 0) and (winning_object_color.special <= 1) then
         begin
 					// special [0-1]
 					dot1 := winning_object_normal.dotProduct(intersecting_ray_direction.negative());
@@ -198,7 +198,7 @@ begin
           if specular > 0 then
           begin
             specular := Power(specular, 10);
-            final_color := final_color.colorAdd(light_sources.Items[light_index].getLightColor().colorScalar(specular*winning_object_color.getColorSpecial()));
+            final_color := final_color.colorAdd(light_sources.Items[light_index].getLightColor().colorScalar(specular*winning_object_color.special));
           end;
 
         end;
@@ -414,7 +414,7 @@ begin
               end;
             end;
 
-					  cam_ray_origin := scene_cam.getCameraPosition();
+					  cam_ray_origin := scene_cam.campos;
 					  cam_ray_direction := camdir.vectAdd(camright.vectMult(xamnt - 0.5).vectAdd(camdown.vectMult(yamnt - 0.5))).normalize();
 
 					  cam_ray := Ray.Create(cam_ray_origin, cam_ray_direction);
@@ -440,9 +440,9 @@ begin
 
 							  intersection_color := getColorAt(intersection_position, intersecting_ray_direction, scene_objects, index_of_winning_object, light_sources, accuracy, ambientlight);
 
-							  tempRed[aa_index] := intersection_color.getColorRed();
-							  tempGreen[aa_index] := intersection_color.getColorGreen();
-							  tempBlue[aa_index] := intersection_color.getColorBlue();
+							  tempRed[aa_index] := intersection_color.red;
+							  tempGreen[aa_index] := intersection_color.green;
+							  tempBlue[aa_index] := intersection_color.blue;
               end;
 
             finally
