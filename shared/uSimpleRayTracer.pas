@@ -43,7 +43,7 @@ begin
   antiAliasingLevel := 1;
   // must be bigger then 0
   if aAntiAliasingLevel > 1 then
-    AntiAliasingLevel := aAntiAliasingLevel;
+    antiAliasingLevel := aAntiAliasingLevel;
 
   n := width * height;
   SetLength(pixels, n);

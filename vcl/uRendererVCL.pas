@@ -3,8 +3,7 @@ unit uRendererVCL;
 interface
 
 uses
-  VCL.Graphics,
-  uSimpleRayTracer;
+  VCL.Graphics, uSimpleRayTracer;
 
 type
   TRendererVCL = class
@@ -66,8 +65,6 @@ begin
     end;
     inc(CurrRow, OffSet);
   end;
-
-
 
   Result := bmp;
 end;
