@@ -82,7 +82,7 @@ begin
   begin
 		// checkered/tile floor pattern
 
-    square := round(floor(intersection_position.getVectX())) + round(floor(intersection_position.getVectZ()));
+    square := round(floor(intersection_position.x)) + round(floor(intersection_position.z));
 
     if square mod 2 = 0 then
     begin
@@ -317,7 +317,7 @@ begin
   campos := Vect.Create(3, 1.5, -4);
 
   look_at := Vect.Create(0,0,0);
-  diff_btw := Vect.Create(campos.getVectX() - look_at.getVectX(), campos.getVectY() - look_at.getVectY(), campos.getVectZ() - look_at.getVectZ());
+  diff_btw := Vect.Create(campos.x - look_at.x, campos.y - look_at.y, campos.z - look_at.z);
 
   camdir := diff_btw.negative().normalize();
   camright := Y.crossProduct(camdir).normalize();

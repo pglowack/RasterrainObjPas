@@ -45,7 +45,7 @@ end;
 function Plane.findIntersection(r: Ray): Double;
 var ray_direction: Vect; a, b: Double;
 begin
-  ray_direction := r.getRayDirection();
+  ray_direction := r.direction;
 
   a := ray_direction.dotProduct(normal);
 
@@ -53,7 +53,7 @@ begin
     Result := -1
   else
   begin
-    b := normal.dotProduct(r.getRayOrigin().vectAdd(normal.vectMult(distance).negative()));
+    b := normal.dotProduct(r.origin.vectAdd(normal.vectMult(distance).negative()));
     Result := -1*b/a;
   end;
 end;

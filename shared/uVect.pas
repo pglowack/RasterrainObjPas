@@ -7,9 +7,6 @@ type
     x, y, z: Double;
     class function Create: Vect; overload; static;
     class function Create(i,j,k: Double): Vect; overload; static;
-    function getVectX: Double;
-    function getVectY: Double;
-    function getVectZ: Double;
     function magnitude: Double;
     function normalize: Vect;
     function negative: Vect;
@@ -39,27 +36,16 @@ end;
 
 function Vect.crossProduct(v: Vect): Vect;
 begin
-	Result := Vect.Create(y*v.getVectZ() - z*v.getVectY(), z*v.getVectX() - x*v.getVectZ(), x*v.getVectY() - y*v.getVectX());
+	Result := Vect.Create(
+    y * v.z - z * v.y,
+    z * v.x - x * v.z,
+    x * v.y - y * v.x
+  );
 end;
 
 function Vect.dotProduct(v: Vect): double;
 begin
-	Result := x*v.getVectX() + y*v.getVectY() + z*v.getVectZ();
-end;
-
-function Vect.getVectX: Double;
-begin
-  Result := x;
-end;
-
-function Vect.getVectY: Double;
-begin
-  Result := y;
-end;
-
-function Vect.getVectZ: Double;
-begin
-  Result := z;
+	Result := x * v.x + y * v.y + z * v.z;
 end;
 
 function Vect.magnitude: Double;
@@ -81,7 +67,7 @@ end;
 
 function Vect.vectAdd(v: Vect): Vect;
 begin
-	Result := Vect.Create(x + v.getVectX(), y + v.getVectY(), z + v.getVectZ());
+	Result := Vect.Create(x + v.x, y + v.y, z + v.z);
 end;
 
 function Vect.vectMult(scalar: Double): Vect;

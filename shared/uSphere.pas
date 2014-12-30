@@ -48,20 +48,20 @@ var ray_origin, ray_direction, sphere_center: Vect;
   sphere_center_x, sphere_center_y, sphere_center_z,
   b, c, discriminant, root_1, root_2: Double;
 begin
-  ray_origin := r.getRayOrigin();
-  ray_origin_x := ray_origin.getVectX();
-  ray_origin_y := ray_origin.getVectY();
-  ray_origin_z := ray_origin.getVectZ();
+  ray_origin := r.origin;
+  ray_origin_x := ray_origin.x;
+  ray_origin_y := ray_origin.y;
+  ray_origin_z := ray_origin.z;
 
-  ray_direction := r.getRayDirection();
-  ray_direction_x := ray_direction.getVectX();
-  ray_direction_y := ray_direction.getVectY();
-  ray_direction_z := ray_direction.getVectZ();
+  ray_direction := r.direction;
+  ray_direction_x := ray_direction.x;
+  ray_direction_y := ray_direction.y;
+  ray_direction_z := ray_direction.z;
 
 	sphere_center := center;
-	sphere_center_x := sphere_center.getVectX();
-	sphere_center_y := sphere_center.getVectY();
-	sphere_center_z := sphere_center.getVectZ();
+	sphere_center_x := sphere_center.x;
+	sphere_center_y := sphere_center.y;
+	sphere_center_z := sphere_center.z;
 
   b := (2*(ray_origin_x - sphere_center_x)*ray_direction_x) + (2*(ray_origin_y - sphere_center_y)*ray_direction_y) + (2*(ray_origin_z - sphere_center_z)*ray_direction_z);
 	c := (ray_origin_x - sphere_center_x)*(ray_origin_x - sphere_center_x)
